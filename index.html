@@ -17,10 +17,10 @@
             theme: {
                 extend: {
                     colors: {
-                        brutalDark: '#264434',      /* Tono verde bosque de la referencia */
-                        brutalCard: '#1d3427',      /* Tono verde profundo para tarjetas */
-                        brutalBorder: '#375a46',    /* Bordes sutiles en tono verde contrastado */
-                        leafAccent: '#F3EFE0',      /* Color crema de la tipografía */
+                        brutalDark: '#264434',
+                        brutalCard: '#1d3427',
+                        brutalBorder: '#375a46',
+                        leafAccent: '#F3EFE0',
                         plantGreen: '#182e22',
                         earthBrown: '#8B5A2B'
                     },
@@ -64,7 +64,7 @@
                 </div>
             </div>
 
-            <!-- Botón de Reserva de Mesa por WhatsApp (Arriba) -->
+            <!-- Botón de Reserva de Mesa por WhatsApp -->
             <a id="headerWhatsAppBtn" href="#" target="_blank" class="bg-leafAccent text-brutalDark border-2 border-black px-4 py-2.5 text-xs font-bold uppercase brutal-shadow brutal-btn transition-all flex items-center gap-2">
                 <span class="text-base">💬</span>
                 <span>Reservar Mesa</span>
@@ -72,7 +72,7 @@
         </div>
     </header>
 
-    <!-- SECCIÓN DE AVISO DESTACADO / MENSAJE IMPORTANTE -->
+    <!-- SECCIÓN DE AVISO DESTACADO -->
     <section class="max-w-4xl w-full mx-auto px-4 mt-6">
         <div id="noticeBanner" class="bg-brutalCard border-2 border-leafAccent p-6 brutal-shadow relative overflow-hidden">
             <div class="absolute -right-6 -bottom-6 text-leafAccent/5 pointer-events-none">
@@ -115,12 +115,12 @@
 
         <!-- LISTADO DE PRODUCTOS -->
         <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="col-span-full text-center py-12 text-emerald-200/60 font-mono">Conectando con Firebase (el-bar)...</div>
+            <div class="col-span-full text-center py-12 text-emerald-200/60 font-mono">Conectando con Firebase...</div>
         </div>
 
     </main>
 
-    <!-- BOTÓN FLOTANTE DE PANEL ADMIN (Esquina Inferior Derecha) -->
+    <!-- BOTÓN FLOTANTE DE PANEL ADMIN -->
     <div class="fixed bottom-6 right-6 z-40">
         <button onclick="openAdminLogin()" class="bg-brutalCard text-leafAccent border-2 border-leafAccent px-4 py-3 text-xs font-bold uppercase brutal-shadow brutal-btn transition-all flex items-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
@@ -128,11 +128,11 @@
         </button>
     </div>
 
-    <!-- FOOTER RURAL -->
+    <!-- FOOTER -->
     <footer class="border-t-4 border-brutalBorder bg-brutalDark py-6 px-4 mt-12 text-center">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-emerald-200/70">
             <p>EL BEJUCO • TAPAS & CERVEZAS</p>
-            <p class="text-leafAccent">Sincronización Firebase (el-bar) activa ☁️</p>
+            <p class="text-leafAccent">Sincronización Firebase activa ☁️</p>
             <p>Entorno Rural Brutalista 🌿</p>
         </div>
     </footer>
@@ -150,14 +150,14 @@
         </div>
     </div>
 
-    <!-- PANEL DE ADMINISTRACIÓN COMPLETO -->
+    <!-- PANEL DE ADMINISTRACIÓN -->
     <div id="adminPanelModal" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto p-4 md:p-8">
         <div class="max-w-4xl mx-auto bg-brutalCard border-4 border-leafAccent p-6 brutal-shadow relative">
             
             <div class="flex justify-between items-center border-b-2 border-brutalBorder pb-4 mb-6">
                 <div>
                     <h2 class="font-title text-2xl text-leafAccent font-extrabold uppercase">Panel de Control Barman</h2>
-                    <p class="text-xs font-mono text-emerald-300">Actualiza productos, precios y ajustes directo en el-bar</p>
+                    <p class="text-xs font-mono text-emerald-300">Actualiza productos y ajustes en tiempo real</p>
                 </div>
                 <button onclick="closeAdminPanel()" class="bg-red-600 text-white px-3 py-1 font-bold text-xs uppercase border-2 border-black">Cerrar [X]</button>
             </div>
@@ -180,7 +180,7 @@
                             <option value="cervezas">Cervezas</option>
                             <option value="tragos">Tragos</option>
                         </select>
-                        <input type="number" step="1" id="prodPriceCUP" placeholder="Precio en CUP (ej. 1500)" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
+                        <input type="number" step="1" id="prodPriceCUP" placeholder="Precio en CUP (ej. 850)" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
                         <input type="text" id="prodBadge" placeholder="Etiqueta (ej. RECOMENDADO)" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
                     </div>
                     <textarea id="prodDesc" placeholder="Descripción rústica..." class="w-full bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono mb-3 h-20"></textarea>
@@ -235,7 +235,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE CONEXIÓN A FIREBASE (PROYECTO el-bar) -->
+    <!-- SCRIPT DE CONEXIÓN CORREGIDO -->
     <script>
         const firebaseConfig = {
             databaseURL: "https://el-bar-2c676-default-rtdb.firebaseio.com"
@@ -246,10 +246,10 @@
 
         let products = [];
         let settings = {
-            exchangeRate: 320,
-            whatsapp: "5350000000",
+            exchangeRate: 850,
+            whatsapp: "5352189922",
             noticeTitle: "LA CARTA",
-            noticeSubtitle: "Cargando...",
+            noticeSubtitle: "de halloween",
             adminPass: "bejuco123"
         };
 
@@ -257,13 +257,20 @@
         let currentSearch = '';
 
         db.ref('products').on('value', (snapshot) => {
-            products = snapshot.val() || [];
+            const rawData = snapshot.val();
+            if (Array.isArray(rawData)) {
+                products = rawData.filter(item => item !== null && item !== undefined);
+            } else if (rawData && typeof rawData === 'object') {
+                products = Object.values(rawData).filter(item => item !== null && item !== undefined);
+            } else {
+                products = [];
+            }
             renderApp();
         });
 
         db.ref('settings').on('value', (snapshot) => {
             if (snapshot.val()) {
-                settings = snapshot.val();
+                settings = Object.assign(settings, snapshot.val());
                 renderApp();
             }
         });
@@ -271,7 +278,7 @@
         function renderApp() {
             document.getElementById('noticeTitleDisplay').innerText = settings.noticeTitle || "LA CARTA";
             document.getElementById('noticeSubtitleDisplay').innerText = settings.noticeSubtitle || "";
-            const rate = parseFloat(settings.exchangeRate) || 320;
+            const rate = parseFloat(settings.exchangeRate) || 850;
             document.getElementById('exchangeRateLabel').innerText = `1 USD = ${rate} CUP`;
 
             const waNumber = settings.whatsapp || "5350000000";
@@ -282,9 +289,11 @@
             grid.innerHTML = '';
 
             const filtered = products.filter(p => {
-                if (!p) return false;
+                if (!p || typeof p !== 'object') return false;
+                const name = p.name || '';
+                const desc = p.desc || '';
                 const matchesCat = currentFilter === 'todas' || p.category === currentFilter;
-                const matchesSearch = p.name.toLowerCase().includes(currentSearch.toLowerCase()) || p.desc.toLowerCase().includes(currentSearch.toLowerCase());
+                const matchesSearch = name.toLowerCase().includes(currentSearch.toLowerCase()) || desc.toLowerCase().includes(currentSearch.toLowerCase());
                 return matchesCat && matchesSearch;
             });
 
@@ -293,29 +302,31 @@
                 return;
             }
 
-            filtered.forEach((p, index) => {
+            filtered.forEach((p) => {
+                // Cálculo correcto: Base en CUP, conversión a USD dividiendo entre la tasa
                 let priceCUP = 0;
-                if (p.priceCUP !== undefined) {
-                    priceCUP = p.priceCUP;
-                } else if (p.priceUSD !== undefined) {
-                    priceCUP = p.priceUSD * rate;
+                if (p.priceCUP !== undefined && p.priceCUP !== null) {
+                    priceCUP = Number(p.priceCUP) || 0;
+                } else if (p.priceUSD !== undefined && p.priceUSD !== null) {
+                    // Compatibilidad por si quedó algún dato antiguo guardado como USD
+                    priceCUP = (Number(p.priceUSD) || 0) * rate;
                 }
-                const priceUSD = priceCUP / rate;
+                const priceUSD = rate > 0 ? (priceCUP / rate) : 0;
 
                 const card = document.createElement('div');
                 card.className = "bg-brutalCard border-2 border-brutalBorder p-5 brutal-shadow flex flex-col justify-between";
                 card.innerHTML = `
                     <div>
                         <div class="flex justify-between items-start gap-2 mb-2">
-                            <h3 class="font-title text-lg font-bold text-leafAccent uppercase">${p.name}</h3>
+                            <h3 class="font-title text-lg font-bold text-leafAccent uppercase">${p.name || 'Sin nombre'}</h3>
                             ${p.badge ? `<span class="bg-plantGreen text-leafAccent text-[10px] font-mono px-2 py-0.5 border border-leafAccent uppercase">${p.badge}</span>` : ''}
                         </div>
-                        <p class="text-xs text-emerald-200/80 font-mono mb-4 leading-relaxed">${p.desc}</p>
+                        <p class="text-xs text-emerald-200/80 font-mono mb-4 leading-relaxed">${p.desc || ''}</p>
                     </div>
                     <div class="flex justify-between items-center pt-3 border-t border-brutalBorder">
                         <div>
                             <span class="text-leafAccent font-bold font-mono text-lg">${Number(priceCUP).toLocaleString()} CUP</span>
-                            <span class="block text-[11px] text-emerald-300/70 font-mono">~$${priceUSD.toFixed(2)} USD</span>
+                            <span class="block text-[11px] text-emerald-300/70 font-mono">~$${Number(priceUSD).toFixed(2)} USD</span>
                         </div>
                     </div>
                 `;
@@ -404,7 +415,7 @@
 
             db.ref('products').set(products).then(() => {
                 resetProductForm();
-                alert('¡Producto guardado en Firebase!');
+                alert('¡Producto guardado en Firebase con éxito!');
             }).catch(err => {
                 alert('Error al guardar: ' + err.message);
             });
@@ -415,16 +426,16 @@
             if (!listContainer) return;
             listContainer.innerHTML = '';
 
-            const rate = parseFloat(settings.exchangeRate) || 320;
+            const rate = parseFloat(settings.exchangeRate) || 850;
             products.forEach((p, idx) => {
-                if (!p) return;
-                const pCUP = p.priceCUP !== undefined ? p.priceCUP : (p.priceUSD * rate);
+                if (!p || typeof p !== 'object') return;
+                const pCUP = p.priceCUP !== undefined ? p.priceCUP : ((p.priceUSD || 0) * rate);
                 const item = document.createElement('div');
                 item.className = "bg-brutalDark border border-brutalBorder p-3 flex justify-between items-center";
                 item.innerHTML = `
                     <div>
-                        <h4 class="text-sm font-bold text-leafAccent">${p.name} <span class="text-xs text-emerald-300 font-mono">(${pCUP} CUP)</span></h4>
-                        <p class="text-[11px] text-emerald-200/70 font-mono uppercase">${p.category} | ${p.badge || 'Sin etiqueta'}</p>
+                        <h4 class="text-sm font-bold text-leafAccent">${p.name || 'Sin nombre'} <span class="text-xs text-emerald-300 font-mono">(${pCUP} CUP)</span></h4>
+                        <p class="text-[11px] text-emerald-200/70 font-mono uppercase">${p.category || 'general'} | ${p.badge || 'Sin etiqueta'}</p>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="editProduct(${idx})" class="bg-yellow-600 text-black text-xs px-2 py-1 font-bold uppercase">Editar</button>
@@ -437,13 +448,14 @@
 
         function editProduct(idx) {
             const p = products[idx];
-            const rate = parseFloat(settings.exchangeRate) || 320;
-            const pCUP = p.priceCUP !== undefined ? p.priceCUP : Math.round(p.priceUSD * rate);
-            document.getElementById('prodName').value = p.name;
-            document.getElementById('prodCategory').value = p.category;
+            if (!p) return;
+            const rate = parseFloat(settings.exchangeRate) || 850;
+            const pCUP = p.priceCUP !== undefined ? p.priceCUP : Math.round((p.priceUSD || 0) * rate);
+            document.getElementById('prodName').value = p.name || '';
+            document.getElementById('prodCategory').value = p.category || 'tapas';
             document.getElementById('prodPriceCUP').value = pCUP;
-            document.getElementById('prodBadge').value = p.badge;
-            document.getElementById('prodDesc').value = p.desc;
+            document.getElementById('prodBadge').value = p.badge || '';
+            document.getElementById('prodDesc').value = p.desc || '';
             document.getElementById('editIndex').value = idx;
             document.getElementById('formTitle').innerText = "Editar Producto";
             document.getElementById('cancelEditBtn').classList.remove('hidden');
@@ -467,16 +479,16 @@
         }
 
         function loadSettingsIntoForm() {
-            document.getElementById('settingExchangeRate').value = settings.exchangeRate;
-            document.getElementById('settingWhatsApp').value = settings.whatsapp;
-            document.getElementById('settingNoticeTitle').value = settings.noticeTitle;
-            document.getElementById('settingNoticeSubtitle').value = settings.noticeSubtitle;
-            document.getElementById('settingAdminPassword').value = settings.adminPass;
+            document.getElementById('settingExchangeRate').value = settings.exchangeRate || 850;
+            document.getElementById('settingWhatsApp').value = settings.whatsapp || "";
+            document.getElementById('settingNoticeTitle').value = settings.noticeTitle || "";
+            document.getElementById('settingNoticeSubtitle').value = settings.noticeSubtitle || "";
+            document.getElementById('settingAdminPassword').value = settings.adminPass || "";
         }
 
         function saveSettings() {
             const er = parseFloat(document.getElementById('settingExchangeRate').value);
-            const wa = document.getElementById('settingWhatsApp').value.trim();
+            const wa = document.getElementById('settingWhatsApp}.value.trim(); // Corregido
             const nt = document.getElementById('settingNoticeTitle').value.trim();
             const ns = document.getElementById('settingNoticeSubtitle').value.trim();
             const ap = document.getElementById('settingAdminPassword').value.trim();
@@ -488,7 +500,7 @@
 
             const updatedSettings = {
                 exchangeRate: er,
-                whatsapp: wa,
+                whatsapp: document.getElementById('settingWhatsApp').value.trim(),
                 noticeTitle: nt,
                 noticeSubtitle: ns,
                 adminPass: ap
