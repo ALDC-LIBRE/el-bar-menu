@@ -303,12 +303,10 @@
             }
 
             filtered.forEach((p) => {
-                // Cálculo correcto: Base en CUP, conversión a USD dividiendo entre la tasa
                 let priceCUP = 0;
                 if (p.priceCUP !== undefined && p.priceCUP !== null) {
                     priceCUP = Number(p.priceCUP) || 0;
                 } else if (p.priceUSD !== undefined && p.priceUSD !== null) {
-                    // Compatibilidad por si quedó algún dato antiguo guardado como USD
                     priceCUP = (Number(p.priceUSD) || 0) * rate;
                 }
                 const priceUSD = rate > 0 ? (priceCUP / rate) : 0;
@@ -488,7 +486,7 @@
 
         function saveSettings() {
             const er = parseFloat(document.getElementById('settingExchangeRate').value);
-            const wa = document.getElementById('settingWhatsApp}.value.trim(); // Corregido
+            const wa = document.getElementById('settingWhatsApp').value.trim();
             const nt = document.getElementById('settingNoticeTitle').value.trim();
             const ns = document.getElementById('settingNoticeSubtitle').value.trim();
             const ap = document.getElementById('settingAdminPassword').value.trim();
@@ -500,7 +498,7 @@
 
             const updatedSettings = {
                 exchangeRate: er,
-                whatsapp: document.getElementById('settingWhatsApp').value.trim(),
+                whatsapp: wa,
                 noticeTitle: nt,
                 noticeSubtitle: ns,
                 adminPass: ap
