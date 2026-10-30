@@ -101,7 +101,7 @@
 
             <div class="flex items-center justify-between sm:justify-end gap-3 bg-brutalCard border-2 border-brutalBorder px-3 py-2">
                 <span id="exchangeRateLabel" class="text-xs font-mono text-leafAccent font-bold">1 USD = ... CUP</span>
-                <span class="text-xs font-mono text-emerald-300/70">Precios en CUP (Base)</span>
+                <span class="text-xs font-mono text-emerald-300/70">Base CUP</span>
             </div>
         </div>
 
@@ -237,7 +237,6 @@
 
     <!-- SCRIPT DE CONEXIÓN A FIREBASE (PROYECTO el-bar) -->
     <script>
-        // Configuración apuntando al proyecto el-bar (el-bar-2c676)
         const firebaseConfig = {
             databaseURL: "https://el-bar-2c676-default-rtdb.firebaseio.com"
         };
@@ -257,7 +256,6 @@
         let currentFilter = 'todas';
         let currentSearch = '';
 
-        // Escucha en tiempo real directo en la raíz del proyecto el-bar
         db.ref('products').on('value', (snapshot) => {
             products = snapshot.val() || [];
             renderApp();
@@ -273,9 +271,9 @@
         function renderApp() {
             document.getElementById('noticeTitleDisplay').innerText = settings.noticeTitle || "LA CARTA";
             document.getElementById('noticeSubtitleDisplay').innerText = settings.noticeSubtitle || "";
-            document.getElementById('exchangeRateLabel').innerText = `1 USD = ${settings.exchangeRate || 320} CUP`;
+            const rate = parseFloat(settings.exchangeRate) || 320;
+            document.getElementById('exchangeRateLabel').innerText = `1 USD = ${rate} CUP`;
 
-            // Actualizar enlace del botón de reservas en el header
             const waNumber = settings.whatsapp || "5350000000";
             const waMessage = encodeURIComponent("¡Hola! Me gustaría reservar una mesa en El Bejuco.");
             document.getElementById('headerWhatsAppBtn').href = `https://wa.me/${waNumber}?text=${waMessage}`;
@@ -296,19 +294,13 @@
             }
 
             filtered.forEach((p, index) => {
-                const rate = settings.exchangeRate || 320;
-                // Manejo de compatibilidad por si algún producto antiguo guardó priceUSD en lugar de priceCUP
                 let priceCUP = 0;
-                let priceUSD = 0;
-
                 if (p.priceCUP !== undefined) {
                     priceCUP = p.priceCUP;
-                    priceUSD = priceCUP / rate;
                 } else if (p.priceUSD !== undefined) {
-                    // Conversión de emergencia para datos viejos
-                    priceUSD = p.priceUSD;
-                    priceCUP = priceUSD * rate;
+                    priceCUP = p.priceUSD * rate;
                 }
+                const priceUSD = priceCUP / rate;
 
                 const card = document.createElement('div');
                 card.className = "bg-brutalCard border-2 border-brutalBorder p-5 brutal-shadow flex flex-col justify-between";
@@ -322,7 +314,7 @@
                     </div>
                     <div class="flex justify-between items-center pt-3 border-t border-brutalBorder">
                         <div>
-                            <span class="text-leafAccent font-bold font-mono text-base">${priceCUP.toLocaleString()} CUP</span>
+                            <span class="text-leafAccent font-bold font-mono text-lg">${Number(priceCUP).toLocaleString()} CUP</span>
                             <span class="block text-[11px] text-emerald-300/70 font-mono">~$${priceUSD.toFixed(2)} USD</span>
                         </div>
                     </div>
@@ -412,7 +404,7 @@
 
             db.ref('products').set(products).then(() => {
                 resetProductForm();
-                alert('¡Producto guardado con precio en CUP en Firebase!');
+                alert('¡Producto guardado en Firebase!');
             }).catch(err => {
                 alert('Error al guardar: ' + err.message);
             });
@@ -423,9 +415,10 @@
             if (!listContainer) return;
             listContainer.innerHTML = '';
 
+            const rate = parseFloat(settings.exchangeRate) || 320;
             products.forEach((p, idx) => {
                 if (!p) return;
-                const pCUP = p.priceCUP !== undefined ? p.priceCUP : (p.priceUSD * (settings.exchangeRate || 320));
+                const pCUP = p.priceCUP !== undefined ? p.priceCUP : (p.priceUSD * rate);
                 const item = document.createElement('div');
                 item.className = "bg-brutalDark border border-brutalBorder p-3 flex justify-between items-center";
                 item.innerHTML = `
@@ -444,7 +437,8 @@
 
         function editProduct(idx) {
             const p = products[idx];
-            const pCUP = p.priceCUP !== undefined ? p.priceCUP : Math.round(p.priceUSD * (settings.exchangeRate || 320));
+            const rate = parseFloat(settings.exchangeRate) || 320;
+            const pCUP = p.priceCUP !== undefined ? p.priceCUP : Math.round(p.priceUSD * rate);
             document.getElementById('prodName').value = p.name;
             document.getElementById('prodCategory').value = p.category;
             document.getElementById('prodPriceCUP').value = pCUP;
