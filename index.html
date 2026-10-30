@@ -52,7 +52,7 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-leafAccent selection:text-brutalDark">
 
-    <!-- HEADER CON EL LOGOTIPO ESTILO CAVEAT (MANUSCRITO) -->
+    <!-- HEADER CON LOGOTIPO Y BOTÓN DE RESERVA -->
     <header class="border-b-4 border-brutalBorder bg-brutalDark sticky top-0 z-40 px-4 py-4 md:py-5">
         <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3 text-center sm:text-left">
@@ -64,11 +64,11 @@
                 </div>
             </div>
 
-            <!-- Botón de Acceso Barman / Admin -->
-            <button onclick="openAdminLogin()" class="bg-brutalCard text-leafAccent border-2 border-leafAccent px-3 py-2 text-xs font-bold uppercase brutal-shadow brutal-btn transition-all flex items-center gap-2">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                Panel Admin
-            </button>
+            <!-- Botón de Reserva de Mesa por WhatsApp (Arriba) -->
+            <a id="headerWhatsAppBtn" href="#" target="_blank" class="bg-leafAccent text-brutalDark border-2 border-black px-4 py-2.5 text-xs font-bold uppercase brutal-shadow brutal-btn transition-all flex items-center gap-2">
+                <span class="text-base">💬</span>
+                <span>Reservar Mesa</span>
+            </a>
         </div>
     </header>
 
@@ -121,6 +121,14 @@
         </div>
 
     </main>
+
+    <!-- BOTÓN FLOTANTE DE PANEL ADMIN (Esquina Inferior Derecha) -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <button onclick="openAdminLogin()" class="bg-brutalCard text-leafAccent border-2 border-leafAccent px-4 py-3 text-xs font-bold uppercase brutal-shadow brutal-btn transition-all flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            Panel Admin
+        </button>
+    </div>
 
     <!-- FOOTER RURAL -->
     <footer class="border-t-4 border-brutalBorder bg-brutalDark py-6 px-4 mt-12 text-center">
@@ -270,6 +278,11 @@
             document.getElementById('noticeSubtitleDisplay').innerText = settings.noticeSubtitle || "";
             document.getElementById('exchangeRateLabel').innerText = `1 USD = ${settings.exchangeRate || 320} CUP`;
 
+            // Actualizar enlace del botón de reservas en el header
+            const waNumber = settings.whatsapp || "5350000000";
+            const waMessage = encodeURIComponent("¡Hola! Me gustaría reservar una mesa en El Bejuco.");
+            document.getElementById('headerWhatsAppBtn').href = `https://wa.me/${waNumber}?text=${waMessage}`;
+
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
 
@@ -287,6 +300,7 @@
 
             filtered.forEach((p, index) => {
                 const priceCUP = Math.round(p.priceUSD * (settings.exchangeRate || 320));
+                
                 const card = document.createElement('div');
                 card.className = "bg-brutalCard border-2 border-brutalBorder p-5 brutal-shadow flex flex-col justify-between";
                 card.innerHTML = `
@@ -474,7 +488,7 @@
 
             const updatedSettings = {
                 exchangeRate: er,
-                    whatsapp: wa,
+                whatsapp: wa,
                 noticeTitle: nt,
                 noticeSubtitle: ns,
                 adminPass: ap
