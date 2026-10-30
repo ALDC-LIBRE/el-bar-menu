@@ -101,9 +101,7 @@
 
             <div class="flex items-center justify-between sm:justify-end gap-3 bg-brutalCard border-2 border-brutalBorder px-3 py-2">
                 <span id="exchangeRateLabel" class="text-xs font-mono text-leafAccent font-bold">1 USD = ... CUP</span>
-                <button onclick="toggleCurrencyView()" class="bg-plantGreen text-leafAccent text-xs font-bold px-2 py-1 border border-leafAccent hover:bg-emerald-900 transition">
-                    Ver: <span id="currentCurrencyMode">USD / CUP</span>
-                </button>
+                <span class="text-xs font-mono text-emerald-300/70">Precios en CUP (Base)</span>
             </div>
         </div>
 
@@ -182,7 +180,7 @@
                             <option value="cervezas">Cervezas</option>
                             <option value="tragos">Tragos</option>
                         </select>
-                        <input type="number" step="0.5" id="prodPriceUSD" placeholder="Precio en USD (ej. 7.50)" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
+                        <input type="number" step="1" id="prodPriceCUP" placeholder="Precio en CUP (ej. 1500)" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
                         <input type="text" id="prodBadge" placeholder="Etiqueta (ej. RECOMENDADO)" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
                     </div>
                     <textarea id="prodDesc" placeholder="Descripción rústica..." class="w-full bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono mb-3 h-20"></textarea>
@@ -258,7 +256,6 @@
 
         let currentFilter = 'todas';
         let currentSearch = '';
-        let showUSDOnly = true;
 
         // Escucha en tiempo real directo en la raíz del proyecto el-bar
         db.ref('products').on('value', (snapshot) => {
@@ -299,8 +296,20 @@
             }
 
             filtered.forEach((p, index) => {
-                const priceCUP = Math.round(p.priceUSD * (settings.exchangeRate || 320));
-                
+                const rate = settings.exchangeRate || 320;
+                // Manejo de compatibilidad por si algún producto antiguo guardó priceUSD en lugar de priceCUP
+                let priceCUP = 0;
+                let priceUSD = 0;
+
+                if (p.priceCUP !== undefined) {
+                    priceCUP = p.priceCUP;
+                    priceUSD = priceCUP / rate;
+                } else if (p.priceUSD !== undefined) {
+                    // Conversión de emergencia para datos viejos
+                    priceUSD = p.priceUSD;
+                    priceCUP = priceUSD * rate;
+                }
+
                 const card = document.createElement('div');
                 card.className = "bg-brutalCard border-2 border-brutalBorder p-5 brutal-shadow flex flex-col justify-between";
                 card.innerHTML = `
@@ -313,8 +322,8 @@
                     </div>
                     <div class="flex justify-between items-center pt-3 border-t border-brutalBorder">
                         <div>
-                            <span class="text-leafAccent font-bold font-mono text-base">$${p.priceUSD.toFixed(2)} USD</span>
-                            <span class="block text-[11px] text-emerald-300/70 font-mono">${priceCUP.toLocaleString()} CUP</span>
+                            <span class="text-leafAccent font-bold font-mono text-base">${priceCUP.toLocaleString()} CUP</span>
+                            <span class="block text-[11px] text-emerald-300/70 font-mono">~$${priceUSD.toFixed(2)} USD</span>
                         </div>
                     </div>
                 `;
@@ -338,11 +347,6 @@
         function handleSearch() {
             currentSearch = document.getElementById('searchInput').value;
             renderApp();
-        }
-
-        function toggleCurrencyView() {
-            showUSDOnly = !showUSDOnly;
-            document.getElementById('currentCurrencyMode').innerText = showUSDOnly ? "USD / CUP" : "CUP Principal";
         }
 
         function openAdminLogin() {
@@ -388,17 +392,17 @@
         function saveProduct() {
             const name = document.getElementById('prodName').value.trim();
             const category = document.getElementById('prodCategory').value;
-            const priceUSD = parseFloat(document.getElementById('prodPriceUSD').value);
+            const priceCUP = parseFloat(document.getElementById('prodPriceCUP').value);
             const badge = document.getElementById('prodBadge').value.trim();
             const desc = document.getElementById('prodDesc').value.trim();
             const editIndex = parseInt(document.getElementById('editIndex').value);
 
-            if (!name || isNaN(priceUSD)) {
-                alert('Por favor completa al menos el nombre y un precio válido en USD.');
+            if (!name || isNaN(priceCUP)) {
+                alert('Por favor completa al menos el nombre y un precio válido en CUP.');
                 return;
             }
 
-            const newProduct = { name, category, priceUSD, badge, desc };
+            const newProduct = { name, category, priceCUP, badge, desc };
 
             if (editIndex === -1) {
                 products.push(newProduct);
@@ -408,7 +412,7 @@
 
             db.ref('products').set(products).then(() => {
                 resetProductForm();
-                alert('¡Producto guardado en la nube del proyecto el-bar!');
+                alert('¡Producto guardado con precio en CUP en Firebase!');
             }).catch(err => {
                 alert('Error al guardar: ' + err.message);
             });
@@ -421,11 +425,12 @@
 
             products.forEach((p, idx) => {
                 if (!p) return;
+                const pCUP = p.priceCUP !== undefined ? p.priceCUP : (p.priceUSD * (settings.exchangeRate || 320));
                 const item = document.createElement('div');
                 item.className = "bg-brutalDark border border-brutalBorder p-3 flex justify-between items-center";
                 item.innerHTML = `
                     <div>
-                        <h4 class="text-sm font-bold text-leafAccent">${p.name} <span class="text-xs text-emerald-300 font-mono">($${p.priceUSD.toFixed(2)})</span></h4>
+                        <h4 class="text-sm font-bold text-leafAccent">${p.name} <span class="text-xs text-emerald-300 font-mono">(${pCUP} CUP)</span></h4>
                         <p class="text-[11px] text-emerald-200/70 font-mono uppercase">${p.category} | ${p.badge || 'Sin etiqueta'}</p>
                     </div>
                     <div class="flex gap-2">
@@ -439,9 +444,10 @@
 
         function editProduct(idx) {
             const p = products[idx];
+            const pCUP = p.priceCUP !== undefined ? p.priceCUP : Math.round(p.priceUSD * (settings.exchangeRate || 320));
             document.getElementById('prodName').value = p.name;
             document.getElementById('prodCategory').value = p.category;
-            document.getElementById('prodPriceUSD').value = p.priceUSD;
+            document.getElementById('prodPriceCUP').value = pCUP;
             document.getElementById('prodBadge').value = p.badge;
             document.getElementById('prodDesc').value = p.desc;
             document.getElementById('editIndex').value = idx;
@@ -451,7 +457,7 @@
 
         function resetProductForm() {
             document.getElementById('prodName').value = '';
-            document.getElementById('prodPriceUSD').value = '';
+            document.getElementById('prodPriceCUP').value = '';
             document.getElementById('prodBadge').value = '';
             document.getElementById('prodDesc').value = '';
             document.getElementById('editIndex').value = '-1';
@@ -495,7 +501,7 @@
             };
 
             db.ref('settings').set(updatedSettings).then(() => {
-                alert('¡Ajustes actualizados en Firebase (el-bar) con éxito!');
+                alert('¡Ajustes actualizados en Firebase con éxito!');
             }).catch(err => {
                 alert('Error al guardar: ' + err.message);
             });
