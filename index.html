@@ -20,7 +20,7 @@
                         brutalDark: '#264434',      /* Tono verde bosque de la referencia */
                         brutalCard: '#1d3427',      /* Tono verde profundo para tarjetas */
                         brutalBorder: '#375a46',    /* Bordes sutiles en tono verde contrastado */
-                        leafAccent: '#F3EFE0',      /* Color crema de la tipografÌa */
+                        leafAccent: '#F3EFE0',      /* Color crema de la tipograf√≠a */
                         plantGreen: '#182e22',
                         earthBrown: '#8B5A2B'
                     },
@@ -60,11 +60,11 @@
                     <h1 class="font-logo text-4xl md:text-5xl tracking-wide text-leafAccent lowercase font-bold flex items-center gap-1 drop-shadow-sm">
                         .bejuco
                     </h1>
-                    <p class="text-[11px] tracking-widest text-emerald-200/80 uppercase font-mono">Tapas ï Cervezas ï Entorno Rural</p>
+                    <p class="text-[11px] tracking-widest text-emerald-200/80 uppercase font-mono">Tapas ‚Ä¢ Cervezas ‚Ä¢ Entorno Rural</p>
                 </div>
             </div>
 
-            <!-- BotÛn de Acceso Barman / Admin -->
+            <!-- Bot√≥n de Acceso Barman / Admin -->
             <button onclick="openAdminLogin()" class="bg-brutalCard text-leafAccent border-2 border-leafAccent px-3 py-2 text-xs font-bold uppercase brutal-shadow brutal-btn transition-all flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                 Panel Admin
@@ -72,7 +72,7 @@
         </div>
     </header>
 
-    <!-- SECCI”N DE AVISO DESTACADO / MENSAJE IMPORTANTE -->
+    <!-- SECCI√ìN DE AVISO DESTACADO / MENSAJE IMPORTANTE -->
     <section class="max-w-4xl w-full mx-auto px-4 mt-6">
         <div id="noticeBanner" class="bg-brutalCard border-2 border-leafAccent p-6 brutal-shadow relative overflow-hidden">
             <div class="absolute -right-6 -bottom-6 text-leafAccent/5 pointer-events-none">
@@ -111,7 +111,7 @@
         <div class="mb-8">
             <div class="relative">
                 <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Buscar en la carta..." class="w-full bg-brutalCard border-2 border-brutalBorder px-4 py-3 text-sm text-leafAccent placeholder-emerald-300/40 focus:outline-none focus:border-leafAccent brutal-shadow-sm font-mono">
-                <span class="absolute right-4 top-3.5 text-emerald-300/60">??</span>
+                <span class="absolute right-4 top-3.5 text-emerald-300/60">üîç</span>
             </div>
         </div>
 
@@ -125,9 +125,9 @@
     <!-- FOOTER RURAL -->
     <footer class="border-t-4 border-brutalBorder bg-brutalDark py-6 px-4 mt-12 text-center">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-emerald-200/70">
-            <p>EL BEJUCO ï TAPAS & CERVEZAS</p>
-            <p class="text-leafAccent">SincronizaciÛn Firebase (el-bar) activa ??</p>
-            <p>Entorno Rural Brutalista ??</p>
+            <p>EL BEJUCO ‚Ä¢ TAPAS & CERVEZAS</p>
+            <p class="text-leafAccent">Sincronizaci√≥n Firebase (el-bar) activa ‚òÅÔ∏è</p>
+            <p>Entorno Rural Brutalista üåø</p>
         </div>
     </footer>
 
@@ -135,8 +135,8 @@
     <div id="adminLoginModal" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-brutalCard border-4 border-leafAccent p-6 w-full max-w-md brutal-shadow relative">
             <h3 class="font-title text-xl text-leafAccent font-bold mb-4 uppercase">Acceso Panel Barman</h3>
-            <p class="text-xs font-mono text-emerald-200 mb-4">Ingresa la contraseÒa de administraciÛn:</p>
-            <input type="password" id="adminPasswordInput" placeholder="ContraseÒa..." class="w-full bg-brutalDark border-2 border-brutalBorder px-4 py-2 text-leafAccent font-mono text-sm mb-4 focus:outline-none focus:border-leafAccent">
+            <p class="text-xs font-mono text-emerald-200 mb-4">Ingresa la contrase√±a de administraci√≥n:</p>
+            <input type="password" id="adminPasswordInput" placeholder="Contrase√±a..." class="w-full bg-brutalDark border-2 border-brutalBorder px-4 py-2 text-leafAccent font-mono text-sm mb-4 focus:outline-none focus:border-leafAccent">
             <div class="flex justify-end gap-3">
                 <button onclick="closeAdminLogin()" class="px-4 py-2 bg-gray-700 text-white text-xs font-bold uppercase border-2 border-black">Cancelar</button>
                 <button onclick="verifyAdminPassword()" class="px-4 py-2 bg-leafAccent text-brutalDark text-xs font-bold uppercase border-2 border-black">Entrar</button>
@@ -144,7 +144,7 @@
         </div>
     </div>
 
-    <!-- PANEL DE ADMINISTRACI”N COMPLETO -->
+    <!-- PANEL DE ADMINISTRACI√ìN COMPLETO -->
     <div id="adminPanelModal" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto p-4 md:p-8">
         <div class="max-w-4xl mx-auto bg-brutalCard border-4 border-leafAccent p-6 brutal-shadow relative">
             
@@ -156,13 +156,13 @@
                 <button onclick="closeAdminPanel()" class="bg-red-600 text-white px-3 py-1 font-bold text-xs uppercase border-2 border-black">Cerrar [X]</button>
             </div>
 
-            <!-- PESTA—AS DE ADMIN -->
+            <!-- PESTA√ëAS DE ADMIN -->
             <div class="flex gap-2 mb-6 border-b border-brutalBorder pb-4">
                 <button onclick="switchAdminTab('products')" id="tabProducts" class="admin-tab-btn px-4 py-2 text-xs font-bold uppercase bg-leafAccent text-brutalDark border-2 border-black">Gestionar Productos</button>
                 <button onclick="switchAdminTab('settings')" id="tabSettings" class="admin-tab-btn px-4 py-2 text-xs font-bold uppercase bg-brutalDark text-gray-300 border-2 border-brutalBorder">Ajustes & Config</button>
             </div>
 
-            <!-- SECCI”N 1: GESTI”N DE PRODUCTOS -->
+            <!-- SECCI√ìN 1: GESTI√ìN DE PRODUCTOS -->
             <div id="adminProductsSection" class="space-y-6">
                 <div class="bg-brutalDark border-2 border-brutalBorder p-4">
                     <h3 id="formTitle" class="font-title text-lg text-leafAccent font-bold mb-3 uppercase">Agregar Nuevo Producto</h3>
@@ -177,7 +177,7 @@
                         <input type="number" step="0.5" id="prodPriceUSD" placeholder="Precio en USD (ej. 7.50)" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
                         <input type="text" id="prodBadge" placeholder="Etiqueta (ej. RECOMENDADO)" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
                     </div>
-                    <textarea id="prodDesc" placeholder="DescripciÛn r˙stica..." class="w-full bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono mb-3 h-20"></textarea>
+                    <textarea id="prodDesc" placeholder="Descripci√≥n r√∫stica..." class="w-full bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono mb-3 h-20"></textarea>
                     <div class="flex gap-2">
                         <button onclick="saveProduct()" class="bg-leafAccent text-brutalDark px-4 py-2 text-xs font-bold uppercase border-2 border-black brutal-shadow-sm font-bold">Guardar en Firebase</button>
                         <button onclick="resetProductForm()" id="cancelEditBtn" class="hidden bg-gray-600 text-white px-4 py-2 text-xs font-bold uppercase border-2 border-black">Cancelar</button>
@@ -190,10 +190,10 @@
                 </div>
             </div>
 
-            <!-- SECCI”N 2: AJUSTES Y CONFIGURACI”N -->
+            <!-- SECCI√ìN 2: AJUSTES Y CONFIGURACI√ìN -->
             <div id="adminSettingsSection" class="space-y-6 hidden">
                 <div class="bg-brutalDark border-2 border-brutalBorder p-4 space-y-4">
-                    <h3 class="font-title text-lg text-leafAccent font-bold uppercase">ConfiguraciÛn General del Negocio</h3>
+                    <h3 class="font-title text-lg text-leafAccent font-bold uppercase">Configuraci√≥n General del Negocio</h3>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
@@ -208,18 +208,18 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-mono text-emerald-200 mb-1">TÌtulo de Aviso Destacado:</label>
+                            <label class="block text-xs font-mono text-emerald-200 mb-1">T√≠tulo de Aviso Destacado:</label>
                             <input type="text" id="settingNoticeTitle" placeholder="LA CARTA" class="w-full bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
                         </div>
                         <div>
-                            <label class="block text-xs font-mono text-emerald-200 mb-1">SubtÌtulo de Aviso Destacado:</label>
+                            <label class="block text-xs font-mono text-emerald-200 mb-1">Subt√≠tulo de Aviso Destacado:</label>
                             <input type="text" id="settingNoticeSubtitle" placeholder="de hallowen" class="w-full bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-mono text-emerald-200 mb-1">ContraseÒa de Administrador:</label>
-                        <input type="text" id="settingAdminPassword" placeholder="Nueva contraseÒa..." class="w-full bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
+                        <label class="block text-xs font-mono text-emerald-200 mb-1">Contrase√±a de Administrador:</label>
+                        <input type="text" id="settingAdminPassword" placeholder="Nueva contrase√±a..." class="w-full bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
                     </div>
 
                     <button onclick="saveSettings()" class="bg-leafAccent text-brutalDark px-4 py-2 text-xs font-bold uppercase border-2 border-black brutal-shadow-sm font-bold">Guardar Ajustes en Firebase</button>
@@ -229,9 +229,9 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE CONEXI”N A FIREBASE (PROYECTO el-bar) -->
+    <!-- SCRIPT DE CONEXI√ìN A FIREBASE (PROYECTO el-bar) -->
     <script>
-        // ConfiguraciÛn apuntando al proyecto el-bar (el-bar-2c676)
+        // Configuraci√≥n apuntando al proyecto el-bar (el-bar-2c676)
         const firebaseConfig = {
             databaseURL: "https://el-bar-2c676-default-rtdb.firebaseio.com"
         };
@@ -252,7 +252,7 @@
         let currentSearch = '';
         let showUSDOnly = true;
 
-        // Escucha en tiempo real directo en la raÌz del proyecto el-bar
+        // Escucha en tiempo real directo en la ra√≠z del proyecto el-bar
         db.ref('products').on('value', (snapshot) => {
             products = snapshot.val() || [];
             renderApp();
@@ -281,7 +281,7 @@
             });
 
             if (filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-12 text-emerald-200/60 font-mono">No se encontraron productos en esta secciÛn.</div>`;
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-emerald-200/60 font-mono">No se encontraron productos en esta secci√≥n.</div>`;
                 return;
             }
 
@@ -344,7 +344,7 @@
                 closeAdminLogin();
                 openAdminPanel();
             } else {
-                alert('ContraseÒa incorrecta');
+                alert('Contrase√±a incorrecta');
             }
         }
 
@@ -380,7 +380,7 @@
             const editIndex = parseInt(document.getElementById('editIndex').value);
 
             if (!name || isNaN(priceUSD)) {
-                alert('Por favor completa al menos el nombre y un precio v·lido en USD.');
+                alert('Por favor completa al menos el nombre y un precio v√°lido en USD.');
                 return;
             }
 
@@ -394,7 +394,7 @@
 
             db.ref('products').set(products).then(() => {
                 resetProductForm();
-                alert('°Producto guardado en la nube del proyecto el-bar!');
+                alert('¬°Producto guardado en la nube del proyecto el-bar!');
             }).catch(err => {
                 alert('Error al guardar: ' + err.message);
             });
@@ -446,7 +446,7 @@
         }
 
         function deleteProduct(idx) {
-            if (confirm('øSeguro que deseas eliminar este producto?')) {
+            if (confirm('¬øSeguro que deseas eliminar este producto?')) {
                 products.splice(idx, 1);
                 db.ref('products').set(products);
             }
@@ -481,7 +481,7 @@
             };
 
             db.ref('settings').set(updatedSettings).then(() => {
-                alert('°Ajustes actualizados en Firebase (el-bar) con Èxito!');
+                alert('¬°Ajustes actualizados en Firebase (el-bar) con √©xito!');
             }).catch(err => {
                 alert('Error al guardar: ' + err.message);
             });
