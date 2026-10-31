@@ -94,10 +94,15 @@
         <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 mb-8">
             <!-- Categorías -->
             <div id="categoryTabs" class="flex flex-wrap gap-2">
-                <button onclick="filterCategory('todas')" class="cat-btn active bg-leafAccent text-brutalDark border-2 border-brutalBorder px-4 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Todas</button>
-                <button onclick="filterCategory('tapas')" class="cat-btn bg-brutalCard text-gray-200 border-2 border-brutalBorder px-4 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Tapas</button>
-                <button onclick="filterCategory('cervezas')" class="cat-btn bg-brutalCard text-gray-200 border-2 border-brutalBorder px-4 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Cervezas</button>
-                <button onclick="filterCategory('tragos')" class="cat-btn bg-brutalCard text-gray-200 border-2 border-brutalBorder px-4 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Tragos</button>
+                <button onclick="filterCategory('todas')" class="cat-btn active bg-leafAccent text-brutalDark border-2 border-brutalBorder px-3 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Todas</button>
+                <button onclick="filterCategory('cafes')" class="cat-btn bg-brutalCard text-gray-200 border-2 border-brutalBorder px-3 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Cafés</button>
+                <button onclick="filterCategory('desayunos')" class="cat-btn bg-brutalCard text-gray-200 border-2 border-brutalBorder px-3 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Desayunos</button>
+                <button onclick="filterCategory('aperitivos')" class="cat-btn bg-brutalCard text-gray-200 border-2 border-brutalBorder px-3 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Aperitivos</button>
+                <button onclick="filterCategory('tapas')" class="cat-btn bg-brutalCard text-gray-200 border-2 border-brutalBorder px-3 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Tapas</button>
+                <button onclick="filterCategory('cervezas')" class="cat-btn bg-brutalCard text-gray-200 border-2 border-brutalBorder px-3 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Cervezas</button>
+                <button onclick="filterCategory('tragos')" class="cat-btn bg-brutalCard text-gray-200 border-2 border-brutalBorder px-3 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Tragos</button>
+                <button onclick="filterCategory('bebidas')" class="cat-btn bg-brutalCard text-gray-200 border-2 border-brutalBorder px-3 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Bebidas</button>
+                <button onclick="filterCategory('bar')" class="cat-btn bg-brutalCard text-gray-200 border-2 border-brutalBorder px-3 py-2 text-xs font-bold uppercase brutal-shadow-sm transition-all">Bar</button>
             </div>
 
             <!-- Tasa de Cambio Informativa -->
@@ -177,11 +182,16 @@
                     <h3 id="formTitle" class="font-title text-lg text-leafAccent font-bold mb-3 uppercase">Agregar Nuevo Producto</h3>
                     <input type="hidden" id="editIndex" value="-1">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-                        <input type="text" id="prodName" placeholder="Nombre (ej. Patatas Bravas)" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
+                        <input type="text" id="prodName" placeholder="Nombre (ej. Café Expreso)" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
                         <select id="prodCategory" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
+                            <option value="cafes">Cafés</option>
+                            <option value="desayunos">Desayunos</option>
+                            <option value="aperitivos">Aperitivos</option>
                             <option value="tapas">Tapas</option>
                             <option value="cervezas">Cervezas</option>
                             <option value="tragos">Tragos</option>
+                            <option value="bebidas">Bebidas</option>
+                            <option value="bar">Bar</option>
                         </select>
                         <input type="number" step="1" id="prodPriceCUP" placeholder="Precio en CUP (ej. 850)" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
                         <input type="text" id="prodBadge" placeholder="Etiqueta (ej. RECOMENDADO)" class="bg-brutalCard border-2 border-brutalBorder p-2 text-sm text-leafAccent font-mono">
@@ -460,7 +470,7 @@
             const rate = parseFloat(settings.exchangeRate) || 850;
             const pCUP = p.priceCUP !== undefined ? p.priceCUP : Math.round((p.priceUSD || 0) * rate);
             document.getElementById('prodName').value = p.name || '';
-            document.getElementById('prodCategory').value = p.category || 'tapas';
+            document.getElementById('prodCategory').value = p.category || 'cafes';
             document.getElementById('prodPriceCUP').value = pCUP;
             document.getElementById('prodBadge').value = p.badge || '';
             document.getElementById('prodDesc').value = p.desc || '';
